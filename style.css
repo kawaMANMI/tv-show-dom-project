@@ -4,6 +4,7 @@ body {
   margin: 4vw 4vw;
   font-family: "Poppins", sans-serif;
   background-color: whites;
+  font-size: 1vw;
 }
 #root {
   --grid-layout-gap: 10px;
@@ -25,7 +26,7 @@ body {
   gap: 2vw 2vw;
 }
 
-.headerInfo > h1 {
+.containerHeader > h1 {
   font-size: 2vw;
   line-height: 0.5em;
   text-align: center;
@@ -33,10 +34,14 @@ body {
   color: black;
   text-transform: uppercase;
 }
-.headerInfo > p {
+.containerHeader > p {
   font-size: 1vw;
   line-height: 0.5em;
   text-align: center;
+}
+
+#inputSearch {
+  height: 2vw;
 }
 .nameEpisode {
   /* border: 3px solid green; */
@@ -66,4 +71,11 @@ body {
   font-size: x-large;
   text-align: justify;
   /* border: 10px solid red; */
+}
+
+#inputSearch {
+  font-size: 1vw;
+}
+.containerEpisode:hover {
+  background-color: rgb(193, 191, 191);
 }

@@ -55,6 +55,7 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
+//This part for live search
 const input = document.createElement("input");
 input.setAttribute("type", "search");
 input.setAttribute("autocomplete", "off");
@@ -81,5 +82,6 @@ function updateValue(e) {
   makePageForEpisodes(episodeMatch);
   labelInputSearch.innerHTML = `  Display ${episodeMatch.length} / ${allEpisodes.length}  episodes`;
 }
+// End live search part
 
 window.onload = setup;

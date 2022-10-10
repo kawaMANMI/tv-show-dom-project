@@ -1,16 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  margin: 4vw 4vw;
+  font-family: "Poppins", sans-serif;
+  background-color: whites;
+}
 #root {
-  color: red;
+  --grid-layout-gap: 10px;
+  --grid-column-count: 4; /* This gets overridden by an inline style. */
+  --grid-item--min-width: 350px; /* This gets overridden by an inline style. */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc(
+    (100% - var(--total-gap-width)) / var(--grid-column-count)
+  );
+
   font-size: 30px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+  );
+
+  gap: 2vw 2vw;
 }
 
-p {
-  border: 3px solid green;
-}
-
-h1 {
-  color: blue;
+.headerInfo > h1 {
+  font-size: 2vw;
+  line-height: 0.5em;
   text-align: center;
+  font-weight: 500;
+  color: black;
+  text-transform: uppercase;
+}
+.headerInfo > p {
+  font-size: 1vw;
+  line-height: 0.5em;
+  text-align: center;
+}
+.nameEpisode {
+  /* border: 3px solid green; */
+  text-align: center;
+  margin: 20px 20px;
+  /* background-color: #878b9d; */
+  padding: 20px 20px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.containerEpisode {
+  /* border: 3px solid rgb(0, 0, 0); */
+  display: flex;
+  flex-direction: column;
+  margin: 10px 30px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.image {
+  width: 50%;
+  align-self: center;
+}
+
+.summary {
+  padding: 20px 20px;
+  color: rgb(39, 5, 5);
+  font-size: x-large;
+  text-align: justify;
+  /* border: 10px solid red; */
 }

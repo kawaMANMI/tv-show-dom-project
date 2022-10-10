@@ -1,3 +1,16 @@
 #root {
   color: red;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+p {
+  border: 3px solid green;
+}
+
+h1 {
+  color: blue;
+  text-align: center;
 }

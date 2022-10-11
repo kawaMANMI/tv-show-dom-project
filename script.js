@@ -27,7 +27,6 @@ SourceInfo.appendChild(linkSource);
 const rootElem = document.getElementById("root");
 
 function makePageForEpisodes(episodeList) {
-  console.log("Kawa");
   episodeList.forEach((episodeListElm) => {
     let containerEpisode = document.createElement("div");
     containerEpisode.className = "containerEpisode";
@@ -40,7 +39,8 @@ function makePageForEpisodes(episodeList) {
     nameEpisode.innerHTML = `${episodeListElm.name} - ${
       seasonNumber + episodeNumber
     }`;
-    // episodeListElm[seasonAndEpisodeNumber] = seasonNumber + episodeNumber;
+
+    // console.log(episodeListElm.select);
     let image = document.createElement("img");
     containerEpisode.appendChild(image);
     image.className = "image";
@@ -55,6 +55,40 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
+//Dropdown List part start from here
+var select = document.createElement("select");
+containerHeader.appendChild(select);
+select.name = "listOfEpisodes";
+select.id = "listOfEpisodes";
+let option = document.createElement("option");
+option.value = -1;
+option.text = "Unselect";
+// console.log(episodeElm.seasonAndEpisodeNumber);
+select.appendChild(option);
+
+let countDropdownList = 0;
+for (const episodeListElm of allEpisodes) {
+  let option = document.createElement("option");
+  let seasonNumber = "S" + episodeListElm.season.toString().padStart(2, "0");
+  let episodeNumber = "E" + episodeListElm.number.toString().padStart(2, "0");
+  option.value = countDropdownList;
+  countDropdownList++;
+  option.text = `${seasonNumber + episodeNumber} - ${episodeListElm.name} `;
+  // console.log(episodeElm.seasonAndEpisodeNumber);
+  select.appendChild(option);
+}
+
+select.addEventListener("change", (event) => {
+  if (select.value > 0) {
+    episodeMatch = [allEpisodes[select.value]];
+  } else {
+    episodeMatch = allEpisodes;
+  }
+  rootElem.innerHTML = "";
+  makePageForEpisodes(episodeMatch);
+});
+//End dropdown list
+
 //This part for live search
 const input = document.createElement("input");
 input.setAttribute("type", "search");
@@ -64,8 +98,9 @@ input.setAttribute("id", "inputSearch");
 containerHeader.appendChild(input);
 const labelInputSearch = document.createElement("label");
 labelInputSearch.setAttribute("for", inputSearch);
-// labelInputSearch.innerHTML = `  Number of found episodes is ${episodeMatch.length} `;
-labelInputSearch.className = containerHeader.appendChild(labelInputSearch);
+labelInputSearch.innerHTML = "";
+labelInputSearch.className = "labelInputSearch";
+containerHeader.appendChild(labelInputSearch);
 
 input.addEventListener("keyup", updateValue);
 
@@ -78,9 +113,9 @@ function updateValue(e) {
       episodeElm.name.toLowerCase().includes(realTimeInputValue) |
       episodeElm.summary.toLowerCase().includes(realTimeInputValue)
   );
-  console.log(episodeMatch);
+  // console.log(episodeMatch);
   makePageForEpisodes(episodeMatch);
-  labelInputSearch.innerHTML = `  Display ${episodeMatch.length} / ${allEpisodes.length}  episodes`;
+  labelInputSearch.innerHTML = `  Display ${episodeMatch.length} / ${allEpisodes.length}  Episodes`;
 }
 // End live search part
 

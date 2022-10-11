@@ -9,7 +9,7 @@ containerHeader.className = "containerHeader";
 document.body.prepend(containerHeader);
 
 var h1 = document.createElement("h1");
-h1.innerHTML = "Info about all episodes are as follows";
+h1.innerHTML = "Episodes list with details";
 containerHeader.appendChild(h1);
 var SourceInfo = document.createElement("p");
 SourceInfo.innerHTML = "the data has (originally) come from ";
@@ -62,7 +62,7 @@ select.name = "listOfEpisodes";
 select.id = "listOfEpisodes";
 let option = document.createElement("option");
 option.value = -1;
-option.text = "Unselect";
+option.text = "Show All";
 // console.log(episodeElm.seasonAndEpisodeNumber);
 select.appendChild(option);
 

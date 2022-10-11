@@ -55,7 +55,7 @@ body {
 }
 .nameEpisode {
   /* border: 3px solid green; */
-  text-align: center;
+  text-align: justify;
   margin: 20px 20px;
   font-size: 1em;
   /* background-color: #878b9d; */
@@ -76,9 +76,6 @@ body {
   align-self: center;
 }
 
-.nameEpisode {
-  font-size: 1.5vw;
-}
 .summary {
   padding: 20px 20px;
   color: rgb(39, 5, 5);

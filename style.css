@@ -26,12 +26,13 @@ body {
 }
 
 .containerHeader > h1 {
-  font-size: 2vw;
+  font-size: 3vw;
   line-height: 0.5em;
   text-align: center;
   font-weight: 500;
   color: black;
   text-transform: uppercase;
+  /* border-radius: 80px; */
 }
 .containerHeader > p {
   font-size: 1vw;
@@ -62,6 +63,7 @@ body {
   padding: 20px 20px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
     rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  border-radius: 20px;
 }
 .containerEpisode {
   /* border: 3px solid rgb(0, 0, 0); */
@@ -69,11 +71,16 @@ body {
   flex-direction: column;
   margin: 10px 30px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 20px;
 }
 
 .image {
   width: 50%;
   align-self: center;
+  border-radius: 20px;
+  box-shadow: rgba(224, 224, 224, 0.4) 5px 5px,
+    rgba(110, 110, 110, 0.3) 10px 10px, rgba(150, 150, 150, 0.2) 15px 15px,
+    rgba(240, 46, 170, 0.1) 20px 20px, rgba(54, 54, 54, 0.05) 25px 25px;
 }
 
 .summary {

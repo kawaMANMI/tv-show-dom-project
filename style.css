@@ -53,12 +53,18 @@ body {
 
 .labelInputSearch,
 .labelAllShows,
-.labelListOfEpisodes, 
+.labelListOfEpisodes,
 .labelInputShows {
   width: 100px;
   font-size: 1vw;
   padding-left: 2em;
   /* background-color: brown; */
+}
+.resetButton {
+  font-size: 1em;
+  padding: 0.5em;
+  margin-left: 1em;
+  float: right;
 }
 .nameEpisode,
 .nameShow {

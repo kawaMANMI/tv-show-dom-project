@@ -159,6 +159,7 @@ function episodePage(selectedShow) {
       function setup(allEpisodes) {
         dropDownListOfEpisodes(allEpisodes);
         liveSearch(allEpisodes);
+        resetPage();
         makePageForEpisodes(allEpisodes);
         // alert("Some data loaded in Fetch");
       }
@@ -275,5 +276,15 @@ function episodePage(selectedShow) {
       labelInputSearch.innerHTML = `  Display ${episodeMatch.length} / ${allEpisodes.length}  Episodes`;
     }
     // End live search part
+  }
+  function resetPage() {
+    const resetButton = document.createElement("button");
+    resetButton.innerHTML = "Go Back to the Shows";
+    containerHeader.appendChild(resetButton);
+    resetButton.className = "resetButton";
+    resetButton.addEventListener("click", refreshPage);
+    function refreshPage() {
+      window.location.reload();
+    }
   }
 }

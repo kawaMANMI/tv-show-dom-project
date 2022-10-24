@@ -22,7 +22,7 @@ SourceInfo.appendChild(linkSource);
 const rootElem = document.getElementById("root");
 const labelAllShows = document.createElement("label");
 labelAllShows.innerHTML = "List of All Shows ";
-labelAllShows.className = "labelInputSearch";
+labelAllShows.className = "labelAllShows";
 containerHeader.appendChild(labelAllShows);
 const selectAllShows = document.createElement("select");
 containerHeader.appendChild(selectAllShows);

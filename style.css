@@ -60,7 +60,8 @@ body {
   padding-left: 2em;
   /* background-color: brown; */
 }
-.resetButton {
+.resetButton,
+#selectForSorting {
   font-size: 1em;
   padding: 0.5em;
   margin-left: 1em;

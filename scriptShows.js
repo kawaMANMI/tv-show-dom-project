@@ -37,7 +37,7 @@ inputShows.setAttribute("autocomplete", "off");
 inputShows.setAttribute("placeholder", "Search for Shows");
 inputShows.setAttribute("id", "inputShows");
 containerHeader.appendChild(inputShows);
-const labelInputShows = document.createElement("label");
+let labelInputShows = document.createElement("label");
 labelInputShows.setAttribute("for", inputShows);
 // labelInputSearch.innerHTML = `  Display ${episodeMatch.length} / ${allEpisodes.length}  Episodes`;
 labelInputShows.className = "labelInputShows";
@@ -49,6 +49,7 @@ const allShows = getAllShows();
 dropDownListAllShows(allShows);
 makePageForShows(allShows);
 liveSearch(allShows);
+SortFunction(allShows);
 
 //Dropdown List All shows
 function dropDownListAllShows(allShows) {
@@ -57,6 +58,8 @@ function dropDownListAllShows(allShows) {
   option.value = countDropdownList;
   option.text = "All Shows";
   selectAllShows.appendChild(option);
+  labelInputShows.innerHTML = `  Display ${allShows.length} / ${allShows.length}  Episodes`;
+
   for (const showsElm of allShows) {
     let option = document.createElement("option");
     countDropdownList++;
@@ -67,14 +70,14 @@ function dropDownListAllShows(allShows) {
   }
 
   selectAllShows.addEventListener("change", (event) => {
-    console.log(allShows[selectAllShows.value]);
+    // console.log(allShows[selectAllShows.value]);
     if (selectAllShows.value >= 0) {
       showMatch = [allShows[selectAllShows.value]];
     } else {
       showMatch = allShows;
     }
     inputShows.value = "";
-    labelInputSearch.innerHTML = `  Display ${showMatch.length} / ${allShows.length}  Episodes`;
+    labelInputShows.innerHTML = `  Display ${showMatch.length} / ${allShows.length}  Episodes`;
     makePageForShows(showMatch);
     // console.log("KK");
   });
@@ -128,6 +131,7 @@ function liveSearch(allShows) {
   let showMatch = "";
   function updateValue(e) {
     let realTimeInputValue = e.target.value.toLowerCase();
+    console.log(realTimeInputValue);
     rootElem.innerHTML = "";
     showMatch = allShows.filter(
       (showElm) =>
@@ -138,7 +142,48 @@ function liveSearch(allShows) {
     makePageForShows(showMatch);
     labelInputShows.innerHTML = `  Display ${showMatch.length} / ${allShows.length}  Shows`;
   }
-  // End live search part
+  inputShows.addEventListener("search", cancelSearch);
+  function cancelSearch(e) {
+    showMatch = allShows;
+    makePageForShows(showMatch);
+    labelInputShows.innerHTML = `  Display ${showMatch.length} / ${allShows.length}  Shows`;
+    // End live search part
+  }
+}
+
+function SortFunction(allShows) {
+  const selectForSorting = document.createElement("select");
+  containerHeader.appendChild(selectForSorting);
+  selectForSorting.name = "selectForSorting";
+  selectForSorting.id = "selectForSorting";
+  let option = document.createElement("option");
+  option.value = 1;
+  option.text = "Sort by Rate Low to High";
+  selectForSorting.appendChild(option);
+  option = document.createElement("option");
+  option.value = 2;
+  option.text = "Sort by Rate High to Low";
+  selectForSorting.appendChild(option);
+
+  selectForSorting.addEventListener("change", (event) => {
+    // console.log(allShows[selectAllShows.value]);
+    console.log(selectForSorting.value);
+    if (selectForSorting.value == 1) {
+      sortArray(allShows);
+      function sortArray(allShows) {
+        allShows.sort((a, b) => a.rating.average - b.rating.average);
+        rootElem.innerHTML = "";
+        makePageForShows(allShows);
+      }
+    } else if (selectForSorting.value == 2) {
+      sortArray(allShows);
+      function sortArray(allShows) {
+        allShows.sort((a, b) => b.rating.average - a.rating.average);
+        rootElem.innerHTML = "";
+        makePageForShows(allShows);
+      }
+    }
+  });
 }
 
 function episodePage(selectedShow) {
@@ -149,6 +194,8 @@ function episodePage(selectedShow) {
   document.getElementById("labelAllShows").style.display = "none";
   document.getElementById("inputShows").style.display = "none";
   document.getElementById("labelInputShows").style.display = "none";
+  document.getElementById("selectForSorting").style.display = "none";
+
   fetch(url)
     .then((response) => {
       // alert("Some data loaded in Fetch");
@@ -172,8 +219,9 @@ function episodePage(selectedShow) {
 
   //Dropdown List for all Episode  start from here
   const labelListOfEpisodes = document.createElement("label");
-  labelListOfEpisodes.innerHTML = "List of all episodes ";
+  labelListOfEpisodes.innerHTML = `Episodes of <b>${selectedShow.name} </b> `;
   labelListOfEpisodes.className = "labelListOfEpisodes";
+  // labelListOfEpisodes.style.fontWeight = "500";
   containerHeader.appendChild(labelListOfEpisodes);
   const selectEpisodes = document.createElement("select");
   containerHeader.appendChild(selectEpisodes);
@@ -238,8 +286,12 @@ function episodePage(selectedShow) {
       containerEpisode.appendChild(image);
       image.className = "image";
 
-      image.src = episodeListElm.image.medium;
-
+      if (episodeListElm.image == null) {
+        image.src = "";
+        // console.log("kkk");
+      } else {
+        image.src = episodeListElm.image.medium;
+      }
       let summary = document.createElement("p");
       summary.className = "summary";
       summary.innerHTML = episodeListElm.summary;

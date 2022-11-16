@@ -23,6 +23,7 @@ body {
   );
 
   gap: 2vw 2vw;
+  margin-top: 2%;
 }
 
 .containerHeader > h1 {
@@ -54,14 +55,15 @@ body {
 .labelInputSearch,
 .labelAllShows,
 .labelListOfEpisodes,
-.labelInputShows {
-  width: 100px;
+.labelInputShows,
+#selectForSorting {
+  width: 20%;
+  height: 5vh;
   font-size: 1vw;
   padding-left: 2em;
   /* background-color: brown; */
 }
-.resetButton,
-#selectForSorting {
+.resetButton {
   font-size: 1em;
   padding: 0.5em;
   margin-left: 1em;

@@ -46,10 +46,27 @@ containerHeader.appendChild(labelInputShows);
 // definition of live search elements
 
 const allShows = getAllShows();
+// let allShows;
+// // fetch("http://api.tvmaze.com/shows")
+//   .then((response) => {
+//     //  alert("Some data loaded in Fetch");
+//     return response.json();
+//   })
+//   .then((allShows) => {
+//     console.log(allShows);
+//     function setupShows(allShows) {
 dropDownListAllShows(allShows);
 makePageForShows(allShows);
 liveSearch(allShows);
 SortFunction(allShows);
+//       // alert("Some data loaded in Fetch");
+//     }
+
+//     setupShows(allShows);
+//   })
+//   .catch((error) => {
+//     alert("The data can't be loaded dfdf " + error);
+//   });
 
 //Dropdown List All shows
 function dropDownListAllShows(allShows) {
